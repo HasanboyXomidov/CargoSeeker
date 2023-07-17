@@ -1,0 +1,108 @@
+create table DocumentPictures(
+	id bigint generated always as identity not null unique,
+	passport_image_path text ,
+	driverLicence_image_path text , 
+	created_at timestamp without time zone ,
+	updated_at timestamp without time zone 
+);
+create table users(
+	id bigint generated always as identity not null unique,
+	first_name varchar(50) not null,
+	second_name varchar(50) ,
+	country text,
+	tel_number varchar(15) not null unique,
+	email text not null unique,
+	password_hash text not null,
+	salt text not null,		
+	user_photo_path text,
+	DocumentPicture_id bigint references DocumentPictures(id),
+	status text,
+	last_activity timestamp without time zone ,
+	rating int ,
+	Review_id bigint,
+	lattitude double precision,
+	longtitude double precision,
+	created_at timestamp without time zone ,
+	updated_at timestamp without time zone 
+);
+create table Reviews(
+	id bigint generated always as identity not null unique,
+	userId bigint references users(id) not null,
+	review_text text not null,
+	is_edited boolean,
+	created_at timestamp without time zone ,
+	updated_at timestamp without time zone 
+);
+create table Cargo(
+	id bigint generated always as identity not null unique,
+	userId bigint references users(id) not null,
+	cargo text,
+	cargo_Weight real,
+	cargo_Volume real,
+	startingTime timestamp without time zone ,
+	day_after_archive int default 0,
+	StartLoadingPlace text,
+	LoadingLattitude double precision,
+	LoadingLongtitude double precision,
+	LoadingStartTime time without time zone ,
+	LoadingFinishTime time without time zone ,
+	FinishUnloadingPlace text ,
+	UnloadingLattitude double precision,
+	UnloadingLongtitude double precision,
+	StartUnloading time without time zone ,
+	FinishUnloading time without time zone ,
+	BodyType text,
+	Bid real,
+	payment_type text,
+	description text,
+	PostCargoAfterMinut int default 0,
+	is_Active boolean not null default false,
+	created_at timestamp without time zone ,
+	updated_at timestamp without time zone 
+);
+create table Transport(
+	id bigint generated always as identity not null unique,
+	userId bigint references users(id) not null,
+	BodyType text,
+	BodyCapacity real,
+	BodyVolume real,
+	BodyLength real,
+	BodyWidth real,
+	BodyHeight real,
+	Permission text,
+	StartingLocation text,
+	EndingLocation text,
+	StartingTime timestamp without time zone ,
+	ArchivizeAfterDay int default 2,
+	Payment text,
+	is_active boolean,
+	created_at timestamp without time zone ,
+	updated_at timestamp without time zone
+);
+create table GetCargo(
+	id bigint generated always as identity not null unique,
+	transport_id bigint references Transport(id) not null,
+	cargo_id bigint references Cargo(id) not null,
+	is_Accepted boolean,
+	status text,
+	description text,
+	bid real,
+	distance_Type text,
+	agreement_day timestamp without time zone ,	
+	created_at timestamp without time zone ,
+	updated_at timestamp without time zone
+);
+create table GetTransport(
+	id bigint generated always as identity not null unique,
+	transport_id bigint references Transport(id) not null,
+	cargo_id bigint references Cargo(id) not null,
+	is_Accepted boolean,
+	status text,
+	description text,
+	bid real,
+	distance_Type text,
+	agreement_day timestamp without time zone ,	
+	created_at timestamp without time zone ,
+	updated_at timestamp without time zone
+);
+

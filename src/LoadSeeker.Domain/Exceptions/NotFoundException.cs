@@ -5,11 +5,10 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CargoSeeker.Domain.Exceptions
+namespace CargoSeeker.Domain.Exceptions;
+
+public class NotFoundException : Exception
 {
-    public class NotFoundException : Exception
-    {
-        public HttpStatusCode StatusCode { get; }= HttpStatusCode.NotFound;
-        public string TitleMessage { get; protected set; }=string.Empty;
-    }
+    public HttpStatusCode StatusCode { get; }= HttpStatusCode.NotFound;
+    public string TitleMessage { get; protected set; }=string.Empty;
 }

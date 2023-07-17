@@ -11,4 +11,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LoadSeeker.DataAccess\CargoSeeker.DataAccess.csproj" />
+    <ProjectReference Include="..\LoadSeeker.Service\CargoSeeker.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwRoot\media\Images\" />
+  </ItemGroup>
+
 </Project>
