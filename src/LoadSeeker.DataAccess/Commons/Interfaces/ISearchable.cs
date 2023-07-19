@@ -10,5 +10,4 @@ namespace CargoSeeker.DataAccess.Commons.Interfaces;
 public interface ISearchable<TEntity>
 {
     public Task<(int ItemsCount, IList<TEntity>)> SearchAsync(String search, PaginationParams @params);
-
 }

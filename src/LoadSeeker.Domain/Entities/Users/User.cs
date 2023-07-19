@@ -21,7 +21,7 @@ public class User : Auditable
     public long DocumentPicture_id { get; set; }
     public UserStatus status { get; set; }
     public DateTime last_activity { get; set; }
-    public float rating { get; set; }
+    public int rating { get; set; }
     public long Review_id { get; set; }
     public double lattitude { get; set; }
     public double longtitude { get; set; }

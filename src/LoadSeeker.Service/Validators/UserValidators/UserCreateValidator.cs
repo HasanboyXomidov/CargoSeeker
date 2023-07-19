@@ -36,7 +36,7 @@ public class UserCreateValidator : AbstractValidator<UserCreateDto>
             .MaximumLength(50).WithMessage("Passwordmust be less than 50 characters!");
         //Validator for UserPhotoPath
         int maxImageSize = 5;
-        RuleFor(dto => dto.userPhotoPath).NotNull().NotEmpty().WithMessage("Name Field Is Required!");
+        RuleFor(dto => dto.userPhotoPath).NotNull().NotEmpty().WithMessage("Photo is Required!");
         RuleFor(dto => dto.userPhotoPath.Length).LessThan(maxImageSize * 1024 * 1024).WithMessage($"Image size must be less than {maxImageSize} MB");
         RuleFor(dto => dto.userPhotoPath.FileName).Must(predicate =>
         {

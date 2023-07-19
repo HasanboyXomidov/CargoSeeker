@@ -17,12 +17,9 @@ public class UserUpdateDto
     public string email { get; set; } = string.Empty;
     public string passwordHash { get; set; } = string.Empty;
     public string salt { get; set; } = string.Empty;
-    public IFormFile? userPhotoPath { get; set; }
-    public long DocumentPicture_id { get; set; }
+    public IFormFile? userPhotoPath { get; set; }    
     public UserStatus status { get; set; }
-    public DateTime last_activity { get; set; }
-    public float rating { get; set; }
-    public long Review_id { get; set; }
+    public float rating { get; set; }    
     public double lattitude { get; set; }
     public double longtitude { get; set; }
 }

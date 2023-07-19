@@ -1,5 +1,6 @@
 ﻿using CargoSeeker.DataAccess.Interfaces.Users;
 using CargoSeeker.Domain.Entities.Users;
+using CargoSeeker.Domain.Enums.UserEnums;
 using CargoSeeker.Domain.Exceptions.Files;
 using CargoSeeker.Domain.Exceptions.UserExceptions;
 using CargoSeeker.Service.Common.Helpers;
@@ -28,24 +29,28 @@ public class UserService : IUserService
 
     public async Task<bool> CreateAsync(UserCreateDto dto)
     {
+        //UserStatus statuss = UserStatus.Verified;
+      
         string imagepath = await _fileService.UploadImageAsync(dto.userPhotoPath);
+     
+
         User user = new User()
         {
             first_name = dto.first_name,
-            second_name= dto.second_name,
+            second_name = dto.second_name,
             country = dto.country,
-            tel_number = dto.tel_number,    
-            email = dto.email,  
-            passwordHash = dto.passwordHash,    
-            salt = dto.salt,    
-            userPhotoPath=imagepath,
-            DocumentPicture_id=dto.DocumentPicture_id,
-            status = dto.status,    
-            last_activity=dto.last_activity,
-            rating=dto.rating,
-            Review_id=dto.Review_id,
-            lattitude=dto.lattitude,
-            longtitude=dto.longtitude,  
+            tel_number = dto.tel_number,
+            email = dto.email,
+            passwordHash = dto.passwordHash,
+            salt = dto.salt,
+            userPhotoPath = imagepath,
+            //DocumentPicture_id = dto.DocumentPicture_id,
+            status = dto.status,
+            rating = dto.rating,
+            lattitude = dto.lattitude,
+            longtitude = dto.longtitude,
+            created_at = TimeHelpers.GetDateTime(),
+            updated_at = TimeHelpers.GetDateTime() 
         };
         var result = await _repository.CreateAsync(user);
         return result>0;
@@ -73,7 +78,7 @@ public class UserService : IUserService
     public async Task<bool> UpdateAsync(long UserId, UserUpdateDto dto)
     {
         var user = await _repository.GetByIdAsync(UserId);
-        if(user is null) { throw new UserNotFoundException() };
+        if(user is null) { throw new UserNotFoundException(); };
 
         user.first_name = dto.first_name;
         user.second_name = dto.second_name;
@@ -82,11 +87,9 @@ public class UserService : IUserService
         user.email = dto.email;
         user.passwordHash = dto.passwordHash;
         user.salt = dto.salt;        
-        user.DocumentPicture_id = dto.DocumentPicture_id;
-        user.status = dto.status;
-        user.last_activity = dto.last_activity;
-        user.rating = dto.rating;
-        user.Review_id = dto.Review_id;
+        //user.DocumentPicture_id = dto.DocumentPicture_id;
+        user.status = dto.status;        
+        user.rating = dto.rating;        
         user.lattitude = dto.lattitude;
         user.longtitude = dto.longtitude;
 

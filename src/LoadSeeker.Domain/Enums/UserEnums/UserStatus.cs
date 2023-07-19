@@ -8,6 +8,6 @@ namespace CargoSeeker.Domain.Enums.UserEnums
 {
     public enum UserStatus
     {
-        Verified=0,Unverified=1
+        Verified,Unverified
     }
 }
