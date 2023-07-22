@@ -2,6 +2,7 @@
 using CargoSeeker.DataAccess.Utils;
 using CargoSeeker.DataAccess.ViewModels.Transports;
 using CargoSeeker.Domain.Entities.Transports;
+using CargoSeeker.Domain.Entities.Users;
 using CargoSeeker.Domain.Exceptions.Transports;
 using CargoSeeker.Service.Common.Helpers;
 using CargoSeeker.Service.DTO.Transports;
@@ -9,6 +10,7 @@ using CargoSeeker.Service.Interfaces.Transports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -72,9 +74,24 @@ public class TransportService : ITransportService
     {
         var transport = await _transportService.GetByIdAsync(transportId);
         if (transport == null) throw new TransportNotFoundExcepiton();
-        else
-        {
-            var result = await _transportService.UpdateAsync(transportId,);    
-        }
+        transport.userId = dto.userid;
+        transport.Bodytype = dto.bodytype.ToString();
+        transport.BodyCapacity = dto.BodyCapacity;
+        transport.BodyVolume = dto.BodyVolume;
+        transport.BodyLength = dto.BodyLength;
+        transport.BodyWidth = dto.BodyWidth;
+        transport.BodyHeight = dto.BodyHeight;
+        transport.Permission = dto.Permission.ToString();
+        transport.StartingLocation = dto.StartingLocation;
+        transport.EndingLocation = dto.EndingLocation;
+        transport.StartingTime = dto.StartingTime;
+        transport.ArchivizeAfterDay = dto.ArchivizeAfterDay;
+        transport.Payment = dto.Payment.ToString();
+        transport.isActive = dto.isActive;
+        transport.created_at = TimeHelpers.GetDateTime();
+        transport.updated_at = TimeHelpers.GetDateTime();
+
+        var result = await _transportService.UpdateAsync(transportId, transport);
+        return result>0;
     }
 }

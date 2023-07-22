@@ -24,6 +24,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddMemoryCache();
 
 //->DI Containers
 builder.Services.AddScoped<IUsersRepository,UserRepository>();
@@ -34,7 +36,7 @@ builder.Services.AddScoped<ICargoRepository,CargoRepository>();
 builder.Services.AddScoped<ICargoService, CargoService>();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddSingleton<ISmsSender,ISmsSender>();
+//builder.Services.AddSingleton<ISmsSender,>();
 
 builder.Services.AddScoped<ITransportService,TransportService>();
 builder.Services.AddScoped<ITransportRepository,TransportRepository>();
