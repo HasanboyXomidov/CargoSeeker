@@ -19,7 +19,7 @@ public class UserUpdateDto
     public string salt { get; set; } = string.Empty;
     public IFormFile? userPhotoPath { get; set; }    
     public UserStatus status { get; set; }
-    public float rating { get; set; }    
+    public int rating { get; set; }    
     public double lattitude { get; set; }
     public double longtitude { get; set; }
 }

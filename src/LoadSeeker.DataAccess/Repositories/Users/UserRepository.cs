@@ -73,6 +73,26 @@ public class UserRepository : BaseRepository, IUsersRepository
             await _connection.CloseAsync();
         }
     }
+
+    public async Task<User?> GetByPhoneAsync(string phoneNumber)
+    {
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "select * from users where tel_number=@PhoneNumber";
+            var result = await _connection.QuerySingleAsync(query,new {PhoneNumber=phoneNumber});
+            return result;
+        }
+        catch
+        {
+            return null;            
+        }
+        finally
+        {
+            await _connection.CloseAsync(); 
+        }
+    }
+
     public async Task<int> UpdateAsync(long Id, User entity)
     {
         try

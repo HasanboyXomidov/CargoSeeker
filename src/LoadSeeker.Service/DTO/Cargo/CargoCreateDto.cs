@@ -1,4 +1,5 @@
 ﻿using CargoSeeker.Domain.Enums.CargoEnums;
+using LoadSeeker.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,11 @@ public class CargoCreateDto
     public int day_after_archive { get; set; } // Archivize after Day
     public string StartLoadingPlace { get; set; } = string.Empty; // Starting Loading Place
     public double LoadingLattitude { get; set; }// Loading Coordinates
-    public double LoadingLongtitude { get; set; }// Loading Coordinates
-    public TimeOnly LoadingStartTime { get; set; }// Loading Start Time(Hours:Min)
-    public TimeOnly LoadingFinishTime { get; set; }// Loading Start Time(Hours:Min)
+    public double LoadingLongtitude { get; set; }// Loading Coordinates    
     public string FinishUnloadingPlace { get; set; } = string.Empty; // Finishing Unloading Place
     public double UnloadingLattitude { get; set; }//  Unloading Place Coordinates
-    public double UnloadingLongtitude { get; set; }//  Unloading Place Coordinates
-    public TimeOnly  StartUnloading { get; set; }// Start Unloading Time(Hours:Min)
-    public TimeOnly FinishUnloading { get; set; }// Start Unloading Time (Hours:Min)
-    public string BodyType { get; set; } = string.Empty;// Trailers Body Type
+    public double UnloadingLongtitude { get; set; }//  Unloading Place Coordinates    
+    public CargoBodyType BodyType { get; set; } // Trailers Body Type
     public float Bid { get; set; }// Payment Bid (Taklif Pul)
     public CargoPaymentTypeEnum payment_type { get; set; } // Hisob kitob Turi Km yoki Soat ga qarab
     public string description { get; set; } = string.Empty;

@@ -34,11 +34,11 @@ public class CargoRepository : BaseRepository, ICargoRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "INSERT INTO public.cargo(userid, cargo, cargo_weight, cargo_volume, startingtime, day_after_archive, startloadingplace, loadinglattitude, loadinglongtitude, loadingstarttime, loadingfinishtime, finishunloadingplace, unloadinglattitude, unloadinglongtitude, startunloading, finishunloading, bodytype, bid, payment_type, description, postcargoafterminut, is_active, created_at, updated_at) " +
+            string query = "INSERT INTO public.cargo(userid, cargo, cargo_weight, cargo_volume, startingtime, day_after_archive, startloadingplace, loadinglattitude, loadinglongtitude, finishunloadingplace, unloadinglattitude, unloadinglongtitude, bodytype, bid, payment_type, description, postcargoafterminut, is_active, created_at, updated_at) " +
                 "VALUES (@userId,@cargo,@cargo_Weight,@cargo_Volume,@startingTime,@day_after_archive," +
-                "@StartLoadingPlace,@LoadingLattitude,@LoadingLongtitude,@LoadingStartTime," +
-                " @LoadingFinishTime,@FinishUnloadingPlace,@UnloadingLattitude,@UnloadingLongtitude," +
-                "@StartUnloading,@FinishUnloading,@BodyType,@Bid,@payment_type,@description," +
+                "@StartLoadingPlace,@LoadingLattitude,@LoadingLongtitude," +
+                " @FinishUnloadingPlace,@UnloadingLattitude,@UnloadingLongtitude," +
+                "@BodyType,@Bid,@payment_type,@description," +
                 "@PostCargoAfterMinut,@is_active,@created_at,@updated_at);";
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
@@ -59,8 +59,8 @@ public class CargoRepository : BaseRepository, ICargoRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "delete from cargo where id=@Id";
-            var result = await _connection.ExecuteAsync(query,new {Id=id});
+            string query = $"delete from cargo where id={id}";
+            var result = await _connection.ExecuteAsync(query);
             return result;              
         }
         catch 
@@ -72,19 +72,19 @@ public class CargoRepository : BaseRepository, ICargoRepository
         }
     }
 
-    public async Task<IList<Cargo>> GetAllAsync(PaginationParams @params)
+    public async Task<IList<CargosViewModel>> GetAllAsync(PaginationParams @params)
     {
         try
         {
             await _connection.OpenAsync();
-            string query = "select * from cargo order by id desc " +
+            string query = "select * from cargos_view order by id desc " +
                 $"offset {@params.GetSkipCount()} limit {@params.PageSize}";
-            var result = (await _connection.QueryAsync<Cargo>(query)).ToList();
+            var result = (await _connection.QueryAsync<CargosViewModel>(query)).ToList();
             return result;
         }
         catch 
         {
-            return new List<Cargo>();            
+            return new List<CargosViewModel>();            
         }
         finally { await _connection.CloseAsync(); } 
     }
@@ -94,8 +94,8 @@ public class CargoRepository : BaseRepository, ICargoRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "select * from cargo where id=@Id";
-            var result = await _connection.QuerySingleAsync<Cargo>(query, new { Id = id });
+            string query = $"select * from cargo where id={id}";
+            var result = await _connection.QuerySingleAsync<Cargo>(query);
             return result;
         }
         catch 
@@ -119,17 +119,17 @@ public class CargoRepository : BaseRepository, ICargoRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "UPDATE public.cargo " +
-                "SET  userid=@userId, cargo=@cargo, cargo_weight=@cargo_Weight,cargo_volume=@cargo_Volume, " +
-                "startingtime=@startingTime, day_after_archive=@day_after_archive,startloadingplace=@StartLoadingPlace, " +
-                "loadinglattitude=@LoadingLattitude,loadinglongtitude=@LoadingLongtitude, loadingstarttime=@LoadingStartTime," +
-                "loadingfinishtime=@LoadingFinishTime, finishunloadingplace=@FinishUnloadingPlace," +
-                "unloadinglattitude=@UnloadingLattitude, unloadinglongtitude=@UnloadingLongtitude," +
-                "startunloading=@StartUnloading, finishunloading=@FinishUnloading,bodytype=@BodyType, bid=@Bid," +
-                " payment_type=@payment_type,description=@description, postcargoafterminut=@PostCargoAfterMinut," +
-                "is_active=@is_active,updated_at=@updated_at " +
-                $"WHERE id=@id;";
-            var result = await _connection.ExecuteAsync(query, new { id =Id  });   
+            string query = $"UPDATE public.cargo " +
+                $"SET userid=@userId, cargo=@cargo, cargo_weight=@cargo_Weight,cargo_volume=@cargo_Volume, " +
+                $"startingtime=@startingTime, day_after_archive=@day_after_archive,startloadingplace=@StartLoadingPlace, " +
+                $"loadinglattitude=@LoadingLattitude,loadinglongtitude=@LoadingLongtitude, " +
+                $"finishunloadingplace=@FinishUnloadingPlace," +
+                $"unloadinglattitude=@UnloadingLattitude, unloadinglongtitude=@UnloadingLongtitude," +
+                $"bodytype=@BodyType, bid=@Bid," +
+                $" payment_type=@payment_type,description=@description, postcargoafterminut=@PostCargoAfterMinut," +
+                $"is_active=@is_active,updated_at=@updated_at " +
+                $"WHERE id={Id};";
+            var result = await _connection.ExecuteAsync(query,entity);   
             return result;  
         }
         catch 

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CargoSeeker.DataAccess.Commons.Interfaces
 {
-    public interface IGetAll<TEntity>
+    public interface IGetAll<TViewModel>
     {
-        public Task<IList<TEntity>> GetAllAsync(PaginationParams @params);
+        public Task<IList<TViewModel>> GetAllAsync(PaginationParams @params);
     }
 }

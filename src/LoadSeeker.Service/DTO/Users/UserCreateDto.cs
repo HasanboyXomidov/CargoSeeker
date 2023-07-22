@@ -20,7 +20,7 @@ public class UserCreateDto
     public IFormFile userPhotoPath { get; set; } = default!;
     //public long DocumentPicture_id { get; set; }
     public UserStatus status { get; set; }    
-    public float rating { get; set; }    
+    public int rating { get; set; }    
     public double lattitude { get; set; }
     public double longtitude { get; set; }
 }

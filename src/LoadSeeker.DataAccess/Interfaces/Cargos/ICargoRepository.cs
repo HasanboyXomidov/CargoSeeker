@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CargoSeeker.DataAccess.Interfaces.Cargos;
 
 public interface ICargoRepository:IRepository<Cargo , CargosViewModel>,
-    ISearchable<CargosViewModel>,IGetAll<Cargo>
+    ISearchable<CargosViewModel>,IGetAll<CargosViewModel>
 {
 
 }

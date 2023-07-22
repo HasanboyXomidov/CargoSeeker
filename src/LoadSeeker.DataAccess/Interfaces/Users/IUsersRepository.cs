@@ -11,5 +11,6 @@ namespace CargoSeeker.DataAccess.Interfaces.Users
 {
     public interface IUsersRepository:IRepository<User , UserViewModel>        
     {
+        public Task<User?> GetByPhoneAsync(string phoneNumber);
     }
 }

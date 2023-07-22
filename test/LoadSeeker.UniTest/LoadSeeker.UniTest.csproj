@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ValidatorTests\Categories\" />
+    <ProjectReference Include="..\..\src\LoadSeeker.Service\CargoSeeker.Service.csproj" />
   </ItemGroup>
 
 </Project>
