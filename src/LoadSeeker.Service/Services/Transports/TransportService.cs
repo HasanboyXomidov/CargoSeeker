@@ -87,8 +87,7 @@ public class TransportService : ITransportService
         transport.StartingTime = dto.StartingTime;
         transport.ArchivizeAfterDay = dto.ArchivizeAfterDay;
         transport.Payment = dto.Payment.ToString();
-        transport.isActive = dto.isActive;
-        transport.created_at = TimeHelpers.GetDateTime();
+        transport.isActive = dto.isActive;        
         transport.updated_at = TimeHelpers.GetDateTime();
 
         var result = await _transportService.UpdateAsync(transportId, transport);

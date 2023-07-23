@@ -1,6 +1,9 @@
 ﻿using CargoSeeker.DataAccess.Utils;
+using CargoSeeker.Service.DTO.Cargo;
 using CargoSeeker.Service.DTO.Transports;
 using CargoSeeker.Service.Interfaces.Transports;
+using CargoSeeker.Service.Validators.TransportValidators;
+using FluentValidation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
@@ -28,7 +31,14 @@ public class TransportController:ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromForm] TransportCreateDto dto)=>
         Ok(await _transportService.CreateAsync(dto));
-
-
-
+    [HttpPut("{transportId}")]
+    public async Task<IActionResult> UpdateAsync(long transportId, [FromForm]TransportsUpdateDto dto)
+    {
+        var updateValidator = new TransportUpdateValidator();
+        var validationResult = updateValidator.Validate(dto);  
+        if(validationResult.IsValid) { return Ok(await _transportService.UpdateAsync(transportId, dto)); }
+        else return BadRequest(validationResult.Errors);   
+    }
+    [HttpDelete("{transportId}")]
+    public async Task<IActionResult> DeleteAsync(long transportId)=>Ok(await _transportService.DeleteAsync(transportId));   
 }

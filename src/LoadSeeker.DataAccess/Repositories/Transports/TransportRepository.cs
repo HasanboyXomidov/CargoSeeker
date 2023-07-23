@@ -77,7 +77,7 @@ public class TransportRepository : BaseRepository, ITransportRepository
         {
             await _connection.OpenAsync();
             string query = "select * from transportViewModel order by id desc " +
-                $"offset{@params.GetSkipCount()} limit{@params.PageSize};";
+                $"offset {@params.GetSkipCount()} limit {@params.PageSize};";
             var result = (await _connection.QueryAsync<TransportViewModel>(query)).ToList();
             return result;  
         }
@@ -138,11 +138,11 @@ public class TransportRepository : BaseRepository, ITransportRepository
         {
             await _connection.OpenAsync();
             string query = "UPDATE public.transport " +
-                "SET userid=@userId, bodytype=@Bodytype, bodycapacity=@BodyCapacity, bodyvolume=@BodyVolume, bodylength=@BodyLength," +
-                "bodywidth=@BodyWidth, bodyheight=@BodyHeight," +
-                " permission=@Permission, startinglocation=@StartingLocation, endinglocation=@EndingLocation," +
-                " startingtime=@StartingTime, archivizeafterday=@ArchivizeAfterDay, payment=@Payment," +
-                " is_active=@isActive, created_at=@created_at, updated_at=@updated_at" +
+                "SET userid=@userid, bodytype=@bodytype, bodycapacity=@BodyCapacity, bodyvolume=@BodyVolume," +
+                "bodylength=@BodyLength, bodywidth=@BodyWidth, bodyheight=@BodyHeight, permission=@Permission," +
+                "startinglocation=@StartingLocation, endinglocation=@EndingLocation, startingtime=@StartingTime," +
+                "archivizeafterday=@ArchivizeAfterDay, payment=@Payment, is_active=@isActive," +
+                "updated_at=@updated_at " +
                 $"WHERE id={Id};";
             var result = await _connection.ExecuteAsync(query,entity);
             return result;

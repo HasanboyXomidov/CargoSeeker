@@ -1,6 +1,7 @@
 ﻿using CargoSeeker.DataAccess.Utils;
 using CargoSeeker.Service.DTO.Cargo;
 using CargoSeeker.Service.Interfaces.Cargos;
+using CargoSeeker.Service.Validators.CargosCreateValidators;
 using CargoSeeker.Service.Validators.CargosValidators;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +30,13 @@ public class CargoController : ControllerBase
     [HttpGet("count")]
     public async Task<IActionResult> CountAsync()=>Ok(await _cargoService.CountAsync());
     [HttpPost]
-    public async Task<IActionResult> CreateAscyn([FromForm] CargoCreateDto dto)=>Ok(await _cargoService.CreateAsync(dto));
+    public async Task<IActionResult> CreateAscyn([FromForm] CargoCreateDto dto)
+    {
+        var createvalidator = new CargoCreateValidator();
+        var validationResult = createvalidator.Validate(dto);
+        if (validationResult.IsValid) { return Ok(await _cargoService.CreateAsync(dto)); }
+        else return BadRequest(validationResult.Errors);
+    }
     [HttpPut("{cargoId}")]
     public async Task<IActionResult> UpadteAsync(long cargoId, [FromForm] CargoUpdateDto dto)
     {

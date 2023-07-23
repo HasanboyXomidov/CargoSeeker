@@ -22,6 +22,5 @@ public class TransportsUpdateDto
     public DateTime StartingTime { get; set; }
     public int ArchivizeAfterDay { get; set; } = 2;
     public TransportPaymentEnum Payment { get; set; }
-    public bool isActive { get; set; } = true;
-    public DateTime updated_at { get; set; }
+    public bool isActive { get; set; } = true;    
 }
