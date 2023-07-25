@@ -80,8 +80,8 @@ public class UserService : IUserService
         user.country = dto.country;
         user.tel_number = dto.tel_number;
         user.email = dto.email;
-        user.passwordHash = dto.passwordHash;
-        user.salt = dto.salt;        
+        //user.passwordHash = dto.passwordHash;
+        //user.salt = dto.salt;        
         //user.DocumentPicture_id = dto.DocumentPicture_id;
         user.status = dto.status;        
         user.rating = dto.rating;        
@@ -92,7 +92,7 @@ public class UserService : IUserService
         {
             //delete old image
             var deleteResult = await _fileService.DeleteImageAsync(user.userPhotoPath);
-            if(deleteResult == false) throw new ImageNotFoundException();
+            //if(deleteResult == false) throw new ImageNotFoundException();
             //ploading new image
             string newImagePath = await _fileService.UploadImageAsync(dto.userPhotoPath);
             // parse new path to user

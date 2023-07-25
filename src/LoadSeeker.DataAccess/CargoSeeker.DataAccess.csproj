@@ -15,8 +15,4 @@
     <ProjectReference Include="..\LoadSeeker.Domain\CargoSeeker.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\NewFolder\" />
-  </ItemGroup>
-
 </Project>

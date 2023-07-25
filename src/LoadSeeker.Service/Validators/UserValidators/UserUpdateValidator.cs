@@ -31,20 +31,20 @@ public class UserUpdateValidator : AbstractValidator<UserUpdateDto>
             .MaximumLength(50).WithMessage("Email must be less than 50 characters!")
             .EmailAddress();
         //Validator for Password_hash
-        RuleFor(dto => dto.passwordHash).NotNull().NotEmpty().WithMessage("Password Field Is Required!")
-            .MinimumLength(3).WithMessage("Password Must Be More Than 9 Characters!")
-            .MaximumLength(50).WithMessage("Passwordmust be less than 50 characters!");
+        //RuleFor(dto => dto.passwordHash).NotNull().NotEmpty().WithMessage("Password Field Is Required!")
+        //    .MinimumLength(3).WithMessage("Password Must Be More Than 9 Characters!")
+        //    .MaximumLength(50).WithMessage("Passwordmust be less than 50 characters!");
         //Validator for Image
-        When(dto => dto.userPhotoPath is not null, () =>
-        {
-            int MaxImageSize = 5;
-            RuleFor(dto=>dto.userPhotoPath!.Length).LessThan(MaxImageSize*1024*1024).WithMessage($"Image size must be less than {MaxImageSize} MB");
-            RuleFor(dto => dto.userPhotoPath!.FileName).Must(predicate =>
-            {
-                FileInfo fileInfo = new FileInfo(predicate);
-                return MediaHelpers.GetImageExtencions().Contains(fileInfo.Extension);
-            }).WithMessage("This file type is not image file");
-        });
+        //When(dto => dto.userPhotoPath is not null, () =>
+        //{
+        //    int MaxImageSize = 5;
+        //    RuleFor(dto=>dto.userPhotoPath!.Length).LessThan(MaxImageSize*1024*1024).WithMessage($"Image size must be less than {MaxImageSize} MB");
+        //    RuleFor(dto => dto.userPhotoPath!.FileName).Must(predicate =>
+        //    {
+        //        FileInfo fileInfo = new FileInfo(predicate);
+        //        return MediaHelpers.GetImageExtencions().Contains(fileInfo.Extension);
+        //    }).WithMessage("This file type is not image file");
+        //});
 
     }
 }

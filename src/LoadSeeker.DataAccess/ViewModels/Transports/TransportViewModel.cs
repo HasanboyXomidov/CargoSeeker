@@ -10,7 +10,7 @@ namespace CargoSeeker.DataAccess.ViewModels.Transports;
 public class TransportViewModel
 {
     public long userId { get; set; }
-    public string userInformation { get; set; }=string.Empty;
+    public string user_informations { get; set; }=string.Empty;
     public int user_rating { get; set; }    
     public TransportBodyTypeEnum Bodytype { get; set; }
     public float BodyCapacity { get; set; }

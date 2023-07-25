@@ -15,8 +15,8 @@ public class UserUpdateDto
     public string country { get; set; } = string.Empty;
     public string tel_number { get; set; } = string.Empty;
     public string email { get; set; } = string.Empty;
-    public string passwordHash { get; set; } = string.Empty;
-    public string salt { get; set; } = string.Empty;
+    //public string passwordHash { get; set; } = string.Empty;
+    //public string salt { get; set; } = string.Empty;
     public IFormFile? userPhotoPath { get; set; }    
     public UserStatus status { get; set; }
     public int rating { get; set; }    

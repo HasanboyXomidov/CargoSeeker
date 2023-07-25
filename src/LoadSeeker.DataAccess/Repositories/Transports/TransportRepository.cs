@@ -1,6 +1,7 @@
 ﻿using CargoSeeker.DataAccess.Interfaces.Transports;
 using CargoSeeker.DataAccess.Utils;
 using CargoSeeker.DataAccess.ViewModels.Transports;
+using CargoSeeker.Domain.Entities.GetTransports;
 using CargoSeeker.Domain.Entities.Transports;
 using Dapper;
 using System;
@@ -132,17 +133,15 @@ public class TransportRepository : BaseRepository, ITransportRepository
         }
     }
 
-    public async Task<int> UpdateAsync(long Id, Domain.Entities.Transports.Transport entity)
+    public async Task<int> UpdateAsync(long Id,GetTransport entity)
     {
         try
         {
             await _connection.OpenAsync();
-            string query = "UPDATE public.transport " +
-                "SET userid=@userid, bodytype=@bodytype, bodycapacity=@BodyCapacity, bodyvolume=@BodyVolume," +
-                "bodylength=@BodyLength, bodywidth=@BodyWidth, bodyheight=@BodyHeight, permission=@Permission," +
-                "startinglocation=@StartingLocation, endinglocation=@EndingLocation, startingtime=@StartingTime," +
-                "archivizeafterday=@ArchivizeAfterDay, payment=@Payment, is_active=@isActive," +
-                "updated_at=@updated_at " +
+            string query = "UPDATE public.gettransport " +
+                "SET transport_id=@transportId, cargo_id=@cargoId, is_accepted=@is_accepted, status=@status," +
+                "description=@description, bid=@bid," +
+                "distance_type=@distance_Type, agreement_day=@agreement_Day,updated_at=@updated_at " +
                 $"WHERE id={Id};";
             var result = await _connection.ExecuteAsync(query,entity);
             return result;
