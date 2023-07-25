@@ -13,10 +13,10 @@ public class GetTransport: Auditable
     public long cargoId { get; set; }
     public long transportId { get ; set; }
     public bool is_accepted { get; set; }
-    public GetTransportEnum status { get; set; }
+    public string status { get; set; }=string.Empty;
     public string description { get; set; } = string.Empty;
     public float bid { get; set; }
-    public TransportDistanceTypeEnum distance_Type { get; set; }
+    public string distance_Type { get; set; } = string.Empty;
     public DateTime agreement_Day { get; set; }
 
 }

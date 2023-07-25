@@ -36,22 +36,17 @@ public class UserService : IUserService
 
         User user = new User()
         {
-            first_name = dto.first_name,
-            second_name = dto.second_name,
-            country = dto.country,
-            tel_number = dto.tel_number,
-            email = dto.email,
+            
+            first_name = dto.first_name,                        
+            tel_number = dto.tel_number,            
             passwordHash = dto.passwordHash,
             salt = dto.salt,
-            userPhotoPath = imagepath,
-            //DocumentPicture_id = dto.DocumentPicture_id,
-            status = dto.status,
-            rating = dto.rating,
-            lattitude = dto.lattitude,
-            longtitude = dto.longtitude,
+            //userPhotoPath = imagepath,
+            //DocumentPicture_id = dto.DocumentPicture_id,                                                
             created_at = TimeHelpers.GetDateTime(),
             updated_at = TimeHelpers.GetDateTime() 
         };
+       
         var result = await _repository.CreateAsync(user);
         return result>0;
         

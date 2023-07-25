@@ -18,18 +18,18 @@ public class UserCreateValidator : AbstractValidator<UserCreateDto>
             .MinimumLength(3).WithMessage("Name Must Be More Than 3 Characters!")
             .MaximumLength(50).WithMessage("Name must be less than 50 characters!");
        // Validator for second name
-        RuleFor(dto => dto.second_name).NotNull().NotEmpty().WithMessage("Second Name Field Is Required!")
-            .MinimumLength(3).WithMessage("Second Name Must Be More Than 3 Characters!")
-            .MaximumLength(50).WithMessage("Second Name must be less than 50 characters!");
+        //RuleFor(dto => dto.second_name).NotNull().NotEmpty().WithMessage("Second Name Field Is Required!")
+        //    .MinimumLength(3).WithMessage("Second Name Must Be More Than 3 Characters!")
+        //    .MaximumLength(50).WithMessage("Second Name must be less than 50 characters!");
         //Validator for Country 
-        RuleFor(dto => dto.country).NotNull().NotEmpty().WithMessage("Country Name Field Is Required!")
-            .MinimumLength(2).WithMessage("There is no country with characters 2 ")
-            .MaximumLength(50).WithMessage("Country name must be less than 50 characters!");
+        //RuleFor(dto => dto.country).NotNull().NotEmpty().WithMessage("Country Name Field Is Required!")
+        //    .MinimumLength(2).WithMessage("There is no country with characters 2 ")
+        //    .MaximumLength(50).WithMessage("Country name must be less than 50 characters!");
         //Validator for Email
-        RuleFor(dto => dto.email).NotNull().NotEmpty().WithMessage("Email is Required!")
-            .MinimumLength(15).WithMessage("Email must be more than 15 characters!")
-            .MaximumLength(50).WithMessage("Email must be less than 50 characters!")
-            .EmailAddress();
+        //RuleFor(dto => dto.email).NotNull().NotEmpty().WithMessage("Email is Required!")
+        //    .MinimumLength(15).WithMessage("Email must be more than 15 characters!")
+        //    .MaximumLength(50).WithMessage("Email must be less than 50 characters!")
+        //    .EmailAddress();
         //Validator for Password_hash
         RuleFor(dto => dto.passwordHash).NotNull().NotEmpty().WithMessage("Password Field Is Required!")
             .MinimumLength(3).WithMessage("Password Must Be More Than 9 Characters!")
