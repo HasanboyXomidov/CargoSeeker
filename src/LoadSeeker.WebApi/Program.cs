@@ -1,7 +1,9 @@
 using CargoSeeker.DataAccess.Interfaces.Cargos;
+using CargoSeeker.DataAccess.Interfaces.IGettransportsl;
 using CargoSeeker.DataAccess.Interfaces.Transports;
 using CargoSeeker.DataAccess.Interfaces.Users;
 using CargoSeeker.DataAccess.Repositories.Cargos;
+using CargoSeeker.DataAccess.Repositories.Gettransports;
 using CargoSeeker.DataAccess.Repositories.Transports;
 using CargoSeeker.DataAccess.Repositories.Users;
 using CargoSeeker.Service.Interfaces.Auth;
@@ -44,7 +46,10 @@ builder.Services.AddSingleton<ISmsSender,SmsSender>();
 builder.Services.AddScoped<ITransportService,TransportService>();
 builder.Services.AddScoped<ITransportRepository,TransportRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IGetTransportService, GetTransportService>();    
+builder.Services.AddScoped<IGettransport,GettransportRepository>();
+builder.Services.AddScoped<IGetTransportService,GetTransportService>();    
+
+
 //->DI Containers
 
 var app = builder.Build();

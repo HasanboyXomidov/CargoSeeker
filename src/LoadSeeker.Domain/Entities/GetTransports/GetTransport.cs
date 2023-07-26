@@ -10,8 +10,8 @@ namespace CargoSeeker.Domain.Entities.GetTransports;
 
 public class GetTransport: Auditable
 {
+    public long transport_id { get ; set; }
     public long cargoId { get; set; }
-    public long transportId { get ; set; }
     public bool is_accepted { get; set; }
     public string status { get; set; }=string.Empty;
     public string description { get; set; } = string.Empty;

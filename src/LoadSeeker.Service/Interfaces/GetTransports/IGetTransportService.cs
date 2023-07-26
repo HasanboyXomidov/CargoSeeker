@@ -1,6 +1,7 @@
 ﻿using CargoSeeker.Domain.Entities.Cargos;
 using CargoSeeker.Domain.Entities.GetTransports;
 using CargoSeeker.Service.DTO.Cargo;
+using CargoSeeker.Service.DTO.GetTransports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace CargoSeeker.Service.Interfaces.GetTransports;
 
 public interface IGetTransportService
 {
-    public Task<bool> CreateAsync(GetTransport dto);
+    public Task<bool> CreateAsync(GetTransportCreateDto dto);
     public Task<bool> DeleteAsync(long getTransportId);
     public Task<long> CountAsync();
-    public Task<bool> UpadteAsync(long getTransportId, GetTransport dto);
+    public Task<bool> UpadteAsync(long getTransportId, GetTransportUpdateDto dto);
     public Task<GetTransport> GetBydIdAsync(long getTransportId);
 }

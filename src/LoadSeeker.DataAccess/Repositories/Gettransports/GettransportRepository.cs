@@ -38,9 +38,9 @@ public class GettransportRepository : BaseRepository, IGettransport
             await _connection.OpenAsync();
             string query = "INSERT INTO public.gettransport(transport_id, cargo_id, is_accepted, status, description, " +
                 "bid, distance_type, agreement_day, created_at, updated_at) " +
-                "VALUES (@cargoId,@transportId,@is_accepted,@status,@description,@bid,@distance_Type,@agreement_Day," +
+                "VALUES (@transport_id,@cargoId,@is_accepted,@status,@description,@bid,@distance_Type,@agreement_Day," +
                 "@created_at,@updated_at);";
-            var result = await _connection.ExecuteAsync(query);
+            var result = await _connection.ExecuteAsync(query,entity);
             return result;
         }
         catch 
