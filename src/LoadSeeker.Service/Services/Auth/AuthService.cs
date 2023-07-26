@@ -34,11 +34,12 @@ public class AuthService : IAuthService
     private const int VERIFICATION_MAXIMUM_ATTEMPTS = 3;
 
     public AuthService(IMemoryCache memoryCache,IUsersRepository usersRepository,
-        ISmsSender smsSender)
+        ISmsSender smsSender,ITokenService tokenService)
     {
         this._memoryCache = memoryCache;
         this._usersRepository = usersRepository;
         this._smsSender = smsSender;
+        this._tokenService = tokenService;
     }
     public async Task<(bool Result, int CashedMinutes)> RegisterAsync(RegisterDto dto)
     {

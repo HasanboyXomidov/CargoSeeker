@@ -80,7 +80,7 @@ public class UserRepository : BaseRepository, IUsersRepository
         {
             await _connection.OpenAsync();
             string query = "select * from users where tel_number=@PhoneNumber";
-            var result = await _connection.QuerySingleAsync(query,new {PhoneNumber=phoneNumber});
+            var result = await _connection.QuerySingleAsync<User>(query,new {PhoneNumber=phoneNumber});
             return result;
         }
         catch

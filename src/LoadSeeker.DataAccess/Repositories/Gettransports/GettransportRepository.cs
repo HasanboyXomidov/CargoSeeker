@@ -12,9 +12,23 @@ namespace CargoSeeker.DataAccess.Repositories.Gettransports;
 
 public class GettransportRepository : BaseRepository, IGettransport
 {
-    public Task<long> CountAsync()
+    public async Task<long> CountAsync()
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "select count(*) from gettransport;";
+            var result = await _connection.QuerySingleAsync<long>(query);
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<int> CreateAsync(GetTransport entity)

@@ -1,7 +1,6 @@
 ﻿using CargoSeeker.DataAccess.Interfaces.Transports;
 using CargoSeeker.DataAccess.Utils;
 using CargoSeeker.DataAccess.ViewModels.Transports;
-using CargoSeeker.Domain.Entities.GetTransports;
 using CargoSeeker.Domain.Entities.Transports;
 using Dapper;
 using System;
@@ -133,7 +132,7 @@ public class TransportRepository : BaseRepository, ITransportRepository
         }
     }
 
-    public async Task<int> UpdateAsync(long Id,GetTransport entity)
+    public async Task<int> UpdateAsync(long Id, Domain.Entities.Transports.Transport entity)
     {
         try
         {
