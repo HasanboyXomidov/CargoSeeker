@@ -128,7 +128,7 @@ public class AuthService : IAuthService
         user.first_name = registerDto.first_name;        
         user.tel_number = registerDto.tel_number;
         user.tel_number_confirmed = true;
-
+        user.email=registerDto.email;
         var hasherResult = PasswordHasher.Hash(registerDto.Password);
         user.passwordHash = hasherResult.Hash;
         user.salt = hasherResult.Salt;

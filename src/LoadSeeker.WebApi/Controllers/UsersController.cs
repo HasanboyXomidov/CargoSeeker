@@ -74,6 +74,6 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> DeleteAsyncs(long userId)
         => Ok(await _userservice.DeleteAsync(userId));  
 
-
+    
 }
 

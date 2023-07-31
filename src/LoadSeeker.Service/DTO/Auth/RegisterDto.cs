@@ -10,6 +10,7 @@ public class RegisterDto
 {
     public string first_name { get ; set; } = string.Empty; 
     public string tel_number { get; set; } = string.Empty;
+    public string email { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;    
 
 }

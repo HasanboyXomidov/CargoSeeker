@@ -77,7 +77,7 @@ public class CargoRepository : BaseRepository, ICargoRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "select * from cargos_view order by id desc " +
+            string query = "select * from cargos_view where is_active = true order by id desc " +
                 $"offset {@params.GetSkipCount()} limit {@params.PageSize}";
             var result = (await _connection.QueryAsync<CargosViewModel>(query)).ToList();
             return result;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CargoSeeker.Service.DTO.GetTransports;
 
 public class GetTransportUpdateDto
-{
+{    
     public long transportId { get; set; }
     public long cargoId { get; set; }
     public bool is_accepted { get; set; }

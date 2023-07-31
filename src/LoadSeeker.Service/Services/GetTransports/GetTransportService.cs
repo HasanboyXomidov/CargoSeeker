@@ -88,6 +88,7 @@ public class GetTransportService : IGetTransportService
         transport.bid = dto.bid;
         transport.distance_Type = dto.distance_Type.ToString();
         transport.agreement_Day = dto.agreement_Day;
+        transport.updated_at = TimeHelpers.GetDateTime();
         var result = await _gettransport.UpdateAsync(getTransportId, transport);
         return result > 0;
     }

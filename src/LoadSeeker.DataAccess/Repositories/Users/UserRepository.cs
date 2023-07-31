@@ -22,8 +22,8 @@ public class UserRepository : BaseRepository, IUsersRepository
         try
         {
             await _connection.OpenAsync();
-            string query = "INSERT INTO public.users(first_name, second_name, country, tel_number, email, password_hash, salt, user_photo_path, status,rating, lattitude, longtitude, created_at, updated_at) " +
-                            "VALUES (@first_name, @second_name, @country, @tel_number,@email, @passwordHash, @salt, @userPhotoPath,@status,@rating, @lattitude, @longtitude,@created_at, @updated_at);";
+            string query = "INSERT INTO public.users(first_name,tel_number,email,password_hash, salt,created_at, updated_at) " +
+                            "VALUES (@first_name, @tel_number,@email,@passwordHash, @salt,@created_at, @updated_at);";
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
 

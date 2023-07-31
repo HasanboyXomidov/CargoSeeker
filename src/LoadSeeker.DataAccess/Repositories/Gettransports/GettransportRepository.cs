@@ -51,7 +51,7 @@ public class GettransportRepository : BaseRepository, IGettransport
         {
             await _connection.CloseAsync();
         }
-    }
+        }
 
     public async Task<int> DeleteAsync(long id)
     {
@@ -77,7 +77,7 @@ public class GettransportRepository : BaseRepository, IGettransport
         try
         {
             await _connection.OpenAsync();
-            string query = $"DELETE FROM public.gettransport WHERE id={id};";
+            string query = $"select * FROM public.gettransport WHERE id={id};";
             var result = await _connection.QuerySingleAsync<GetTransport>(query);
             return result;
         }
@@ -97,8 +97,9 @@ public class GettransportRepository : BaseRepository, IGettransport
         {
             await _connection.OpenAsync();
             string query = "UPDATE public.gettransport " +
-                "SET id=?, transport_id=?, cargo_id=?, is_accepted=?, status=?, description=?, bid=?, distance_type=?," +
-                " agreement_day=?, created_at=?, updated_at=? " +
+                "SET transport_id=@transport_id, cargo_id=@cargoId, is_accepted=@is_accepted, status=@status," +
+                "description=@description, bid=@bid, distance_type=@distance_Type," +
+                " agreement_day=@agreement_Day,updated_at=@updated_at " +
                 $"WHERE id={Id};";
             var result = await _connection.ExecuteAsync(query, entity);
             return result;
